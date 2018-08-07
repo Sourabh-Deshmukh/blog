@@ -1,0 +1,14 @@
+
+<%=form_with(model: [@blog, @post, @comment], remote: true) do |form| %>
+  <p>
+    <%= form.label :user %><br>
+    <%= form.text_field :current_user %>
+  </p>
+
+    <p>
+    <%= form.label :ucomment %><br>
+    <%= form.text_field :ucomment %>
+  </p>
+<%= form.button :submit%>
+ <% end %>
+ 

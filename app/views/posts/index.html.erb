@@ -1,0 +1,63 @@
+<%= link_to 'Create New post', new_blog_post_path %>
+<h3>My posts</h3>
+  <% j= 0%>
+  <% @post.each do |post| %>
+    <% if user_signed_in?%>
+      <% if (current_user.has_role? :admin)or(post.blog.user == current_user)%>
+        <p>Title: <%= post.title %></p>
+        <p>Body: <%= post.body %></p>
+          <% if post.image.attached? %>
+                  <%= image_tag(post.image, height: '320', width: '220') %>
+          <% end %> 
+          <p>
+          <%= link_to 'Show', blog_post_path(:id => post.id, 
+                 :blog_id => post.blog_id) %>
+          
+          <% j=1%>
+          <% if post.published == false%>
+            <b>unverified</b>
+          <% else%>
+            <b>verified</b>
+          <% end %></p>
+                    
+      <% elsif post.blog.user != current_user%>
+        <% if post.published%>
+        <p>Title: <%= post.title %></p>
+        <p>Body:<%= post.body %></p>
+        <%if post.image.attached? %>
+          <%= image_tag(post.image, height: '320', width: '220') %>
+        <% end %> 
+        <% if post.published == false%>
+          <b>unverified</b>
+        <% else%>
+          <b>verified</b>
+        <% end %>
+        <p><%= link_to 'Show', blog_post_path(:id => post.id, 
+          :blog_id => post.blog_id) %>
+          <% j=1%>
+        </p> 
+        <%end %>
+      <% end%> 
+
+    <% else %> 
+        <% if post.published%>
+        <p>Title: <%= post.title %></p>
+        <p>Body: <%= post.body %></p>
+
+          <p><% if post.image.attached? %>
+          <%= image_tag(post.image, height: '320', width: '220') %>
+          <% end %> </p>
+
+          <%= link_to 'Show', blog_post_path(:id => post.id, 
+          :blog_id => post.blog_id) %>
+            <% j=1%>
+             
+          <% end%>
+          
+          
+    <% end %>
+  <% end %>
+  <% if j==0%>
+    <p>No post is verified.</p>
+  <%end%>
+  <p><%= link_to 'back', blogs_path %></p>

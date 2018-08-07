@@ -1,0 +1,15 @@
+<div class="d-flex flex-row justify-content-center align-items-center" style="height: 100%;">
+<%=form_for @blog, url: {action: "update"} do |f| %>
+ 
+
+  <p>
+    <%= f.label :blogname %><br>
+    <%= f.text_area :blogname %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+ </div>

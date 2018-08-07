@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body class="text-center">
+	<br><br>
+<div>
+<%= form_with scope: :blog,	 url: blogs_path, local: true do |form| %>
+  <p >
+    <%= form.label :blogname %><br><br>
+    <%= form.text_area :blogname %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>       
+ </div>
+ </body>
+ </html>

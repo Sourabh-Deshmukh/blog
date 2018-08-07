@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<h1>Listing blogs</h1>
+<%= link_to 'Create New blog', new_blog_path %>
+<table class= "table">
+  <tr>
+    <h3><th>Blog names</th></h3>
+    <th colspan="4"></th>
+  </tr>
+ 
+  <% @blog.each do |blog| %>
+    <tr>
+    	<% if blog.user == current_user %>
+      <td><%= blog.blogname %></td>
+
+      <td><%= link_to 'Show', blog_posts_path(blog.id) %></td>
+      
+      <td><%= link_to 'Edit', edit_blog_path(blog.id) %></td>
+      <td><%= link_to 'Destroy', blog_path(blog.id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+      <% else %>
+      <td><%= blog.blogname %></td>
+      <td><%= link_to 'Show', blog_posts_path(blog.id) %></td>
+      <th colspan="5"></th>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+</body>
+</html>

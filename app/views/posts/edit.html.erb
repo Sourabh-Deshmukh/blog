@@ -1,0 +1,24 @@
+<%=form_for @post, url: {action: "update"} do |form| %>
+ 
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+ <%if @post.image.attached? %>
+      <%= image_tag(@post.image, height: '320', width: '220') %>
+  <%  end %>
+  <p>
+    <%= form.label :image %><br />
+    <%= form.file_field :image, autocomplete: "image" %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
+ 

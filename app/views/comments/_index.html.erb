@@ -1,0 +1,26 @@
+<% @comments.each do |comment|%>
+<p>
+  <strong>Name:</strong>
+  <%= comment.user_id %>
+
+</p>
+ <p>
+  <strong>Comment:</strong>
+  <%= comment.ucomment %>
+</p>
+<%if user_signed_in?%>
+<% if comment.user == current_user%>
+  <p>
+  	<div id="<%= comment.id%>" ><%= link_to 'Edit', edit_blog_post_comment_path(@blog, comment.post_id, comment.id), remote: true %>
+  </div>
+
+ <div id="<%= @blog.id%>" >
+   <div id="<%= comment.post_id%>" >
+     <div id="<%= comment.id%>" >
+       <p class="destroy">delete</p>
+     </div>
+   </div>
+ </div>
+<% end %>
+<% end %>
+  <% end %> 
